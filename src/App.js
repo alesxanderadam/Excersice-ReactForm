@@ -1,8 +1,10 @@
-import FormUser from "./pages/FormUser";
+// import FormUser from "./pages/FormUser";
+import User from "./pages/User";
 
 function App() {
   return (
-    <FormUser />
+    // <FormUser />
+    <User />
   );
 }
 
