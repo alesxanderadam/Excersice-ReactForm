@@ -7,9 +7,9 @@ export default class StudentFind extends Component {
             <table className='table'>
                 <thead className='bg-dark text-white'>
                     <tr>
-                        <th>Ma SV</th>
-                        <th>So dien thoai</th>
-                        <th>Ho ten</th>
+                        <th>MaSinhVien</th>
+                        <th>Ten</th>
+                        <th>SoDienThoai</th>
                         <th>Email</th>
                     </tr>
                 </thead>
