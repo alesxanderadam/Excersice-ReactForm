@@ -20,10 +20,10 @@ export default class User extends Component {
         valid: false,
         data: [
             {
-                MaSinhVien: 1, Ten: 'Nguyen Van B', SoDienThoai: '0921620996', email: 'nguyenvanB@gmail.com'
+                MaSinhVien: '1', Ten: 'Nguyen Van B', SoDienThoai: '0921620996', email: 'nguyenvanB@gmail.com'
             },
             {
-                MaSinhVien: 2, Ten: 'Nguyen Van A', SoDienThoai: '0972947812', email: 'nguyenvanA@gmail.com'
+                MaSinhVien: '2', Ten: 'Nguyen Van A', SoDienThoai: '0972947812', email: 'nguyenvanA@gmail.com'
 
             }
         ],
@@ -36,9 +36,11 @@ export default class User extends Component {
     }
     changeFindUser = (e) => {
         let { data } = this.state
-        let valueFind = Number(e.target.value)
+        console.log(data)
+        let valueFind = String(e.target.value)
         if (valueFind) {
             let userFind = data.find(user => user.MaSinhVien === valueFind)
+            console.log(userFind)
             if (userFind) {
                 this.setState({
                     studentCanTim: userFind
@@ -47,7 +49,7 @@ export default class User extends Component {
                 })
             }
         } else {
-            console.log('false')
+            console.log('Không có sinh viên cần tim')
             return false;
         }
 
