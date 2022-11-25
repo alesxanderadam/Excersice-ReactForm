@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import Search from './search';
 import UserTable from './UserTable'
+import StudentFind from './student-find'
 
 export default class User extends Component {
     state = {
@@ -24,8 +26,33 @@ export default class User extends Component {
                 MaSinhVien: 2, Ten: 'Nguyen Van A', SoDienThoai: '0972947812', email: 'nguyenvanA@gmail.com'
 
             }
-        ]
+        ],
+        studentCanTim: {
+            MaSinhVien: '',
+            Ten: '',
+            SoDienThoai: '',
+            email: ''
+        }
     }
+    changeFindUser = (e) => {
+        let { data } = this.state
+        let valueFind = Number(e.target.value)
+        if (valueFind) {
+            let userFind = data.find(user => user.MaSinhVien === valueFind)
+            if (userFind) {
+                this.setState({
+                    studentCanTim: userFind
+                }, () => {
+                    console.log(this.state.studentCanTim)
+                })
+            }
+        } else {
+            console.log('false')
+            return false;
+        }
+
+    }
+
     handleUpdate = () => {
         // Tìm ra sản phẩm có mã tương đương formValue.id
         let { data, formValue } = this.state;
@@ -160,7 +187,9 @@ export default class User extends Component {
                     </div>
                 </form>
                 <div className='container mt-2'>
+                    <Search data={this.state.data} changeFindUser={this.changeFindUser} />
                     <UserTable data={this.state.data} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+                    <StudentFind studentCanTim={this.state.studentCanTim} />
                 </div>
             </>
         )

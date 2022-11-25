@@ -20,8 +20,8 @@ export default class UserTable extends Component {
                             {data.map(({ MaSinhVien, Ten, SoDienThoai, email }, index) => {
                                 return <tr key={index}>
                                     <td>{MaSinhVien}</td>
-                                    <td>{SoDienThoai}</td>
                                     <td>{Ten}</td>
+                                    <td>{SoDienThoai}</td>
                                     <td>{email}</td>
                                     <td>
                                         <button className='btn btn-success me-3' onClick={() => {
