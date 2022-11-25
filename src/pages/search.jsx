@@ -6,7 +6,7 @@ export default class Search extends Component {
         let { changeFindUser } = this.props
         return (
             <div>
-                <Input.Search onChange={changeFindUser} className="py-3" placeholder="Tìm kiếm sinh viên" enterButton />
+                <Input onChange={changeFindUser} className="py-3" placeholder="Tìm kiếm sinh viên" />
             </div>
         )
     }
