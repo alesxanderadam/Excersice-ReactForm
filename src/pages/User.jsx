@@ -36,21 +36,16 @@ export default class User extends Component {
     }
     changeFindUser = (e) => {
         let { data } = this.state
-        console.log(data)
         let valueFind = String(e.target.value)
         if (valueFind) {
             let userFind = data.find(user => user.MaSinhVien === valueFind)
-            console.log(userFind)
             if (userFind) {
                 this.setState({
                     studentCanTim: userFind
-                }, () => {
-                    console.log(this.state.studentCanTim)
                 })
+            } else {
+                return false
             }
-        } else {
-            console.log('Không có sinh viên cần tim')
-            return false;
         }
 
     }
@@ -98,6 +93,7 @@ export default class User extends Component {
         let { value, name } = e.target;
         let dataType = e.target.getAttribute('data-type');
         let dataMaxLength = e.target.getAttribute('data-maxLength');
+        let dataEmail = e.target.getAttribute('data-email');
         let newFormValue = this.state.formValue;
         newFormValue[name] = value;
         //Xu ly loi
@@ -114,6 +110,12 @@ export default class User extends Component {
             }
             if (dataMaxLength !== null && value.length > dataMaxLength) {
                 message = name + ` Không được quá ${dataMaxLength}`
+            }
+            if (dataEmail === 'email') {
+                let regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!regexEmail.test(value)) {
+                    message = name + ' không hợp lệ'
+                }
             }
         }
         newFormErr[name] = message;
@@ -172,7 +174,7 @@ export default class User extends Component {
                                     </div>
                                     <div className="form-group mt-3">
                                         <p>Email</p>
-                                        <input value={formValue.email} type='text' className='form-control' name="email" onInput={this.handleChangeInput} />
+                                        <input value={formValue.email} data-email='email' type='text' className='form-control' name="email" onInput={this.handleChangeInput} />
                                         {this.state.formErr.email && <div className='alert alert-danger mt-2 py-3'>{this.state.formErr.email}</div>}
                                     </div>
                                 </div>
